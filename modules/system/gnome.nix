@@ -13,5 +13,8 @@
     gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnome-tweaks
+    colloid-gtk-theme 
+    colloid-icon-theme 
+    mactahoe-cursor;
   ];
 }

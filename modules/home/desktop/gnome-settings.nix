@@ -9,6 +9,7 @@
       tiling-mode-enabled = true;
       window-gap-size = 8;
       window-gap-hidden-on-single = false;
+      focus-border-color = "rgb(203,166,247)";
     };
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "BOTTOM";

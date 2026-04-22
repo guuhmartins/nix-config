@@ -17,6 +17,7 @@
       dock-fixed = false;
       dash-max-icon-size = 48;
       custom-theme-shrink = true;
+      background-opacity = 0.5;
     };
   };
 }

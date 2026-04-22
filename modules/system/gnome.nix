@@ -16,5 +16,6 @@
     colloid-gtk-theme 
     colloid-icon-theme 
     mactahoe-cursor;
+  services.flatpak.enable = true;
   ];
 }

@@ -5,5 +5,6 @@
     gamemode
     mangohud
     mgba
+    hydra-launcher;
   ];
 }

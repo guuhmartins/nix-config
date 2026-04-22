@@ -5,5 +5,10 @@
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
+    plugins = with pkgs.vimPlugins; [ 
+      nvim-treesitter 
+      nvim-lspconfig 
+      catppuccin-nvim 
+    ];
   };
 }

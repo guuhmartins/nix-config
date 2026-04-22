@@ -1,5 +1,5 @@
 {
-  description = "Guuh's NixOS & Home Manager Configuration";
+  description = "Guuh NixOS Config - Modular Architecture";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";

@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./desktop/gnome-settings.nix
     ./shell/kitty.nix
     ./dev-tools/vscode.nix
     ./dev-tools/languages.nix

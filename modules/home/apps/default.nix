@@ -5,5 +5,6 @@
     spotify
     libreoffice
     figma-linux
+    sklauncher;
   ];
 }

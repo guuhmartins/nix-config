@@ -13,5 +13,7 @@
   home.username = "guuh";
   home.homeDirectory = "/home/guuh";
   home.stateVersion = "24.11";
+  nixpkgs.config.allowUnfree = true;
+  programs.starship.enable = true;
   programs.home-manager.enable = true;
 }

@@ -2,9 +2,8 @@
 {
   programs.steam.enable = true;
   environment.systemPackages = with pkgs; [
-    gamemode
-    mangohud
-    mgba
-    hydra-launcher;
+    pkgs.gamemode
+    pkgs.mangohud
+    pkgs.mgba
   ];
 }

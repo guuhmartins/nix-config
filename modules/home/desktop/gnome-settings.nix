@@ -1,23 +1,13 @@
 { lib, ... }:
 {
   dconf.settings = {
+    # Aqui o Home Manager vai carregar tudo o que ajustamos manualmente
     "org/gnome/mutter" = {
       center-new-windows = true;
       edge-tiling = true;
     };
-    "org/gnome/shell/extensions/forge" = {
-      tiling-mode-enabled = true;
-      window-gap-size = 8;
-      window-gap-hidden-on-single = false;
-      focus-border-color = "rgb(203,166,247)";
-    };
-    "org/gnome/shell/extensions/dash-to-dock" = {
-      dock-position = "BOTTOM";
-      extend-height = false;
-      dock-fixed = false;
-      dash-max-icon-size = 48;
-      custom-theme-shrink = true;
-      background-opacity = 0.5;
-    };
   };
+  
+  # Comando para importar o dump que acabamos de fazer
+  home.file.".config/gnome-settings.ini".source = ./gnome-settings.ini;
 }

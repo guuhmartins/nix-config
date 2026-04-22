@@ -1,5 +1,5 @@
 {
-  description = "Guuh's Advanced NixOS & Home Manager Configuration";
+  description = "Guuh's NixOS Config";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -7,43 +7,19 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Snow-Niri / iNiR references
-    inir = {
-      url = "github:snowarch/iNiR";
-      flake = false;
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
-    let
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      
-      # Importando nossa biblioteca customizada
-      lib = import ./lib { inherit (nixpkgs) lib; };
-      
-      # Configurando overlays
-      overlays = import ./overlays { inherit inputs; };
-      
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ overlays ];
-        config.allowUnfree = true;
-      };
-    in {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = { inherit inputs pkgs lib; };
-        modules = [
-          ./modules/system/configuration.nix
-        ];
-      };
-
-      homeConfigurations."guuh@nixos" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = { inherit inputs lib; };
-        modules = [
-          ./modules/home/home.nix
-        ];
-      };
+      specialArgs = { inherit inputs; };
+      modules = [ ./modules/system/configuration.nix ];
     };
+
+    homeConfigurations.guuh = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      extraSpecialArgs = { inherit inputs; };
+      modules = [ ./modules/home/home.nix ];
+    };
+  };
 }

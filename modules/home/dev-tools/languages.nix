@@ -5,7 +5,7 @@
     python3
     nodejs_20
     mariadb
-    nodePackages.create-react-app 
-    nodePackages.typescript;
+    # Agora os pacotes estão no nível superior
+    typescript
   ];
 }

@@ -1,5 +1,5 @@
 {
-  description = "Guuh NixOS Config - Modular Architecture";
+  description = "Guuh's Advanced NixOS & Home Manager Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -17,13 +17,32 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      
+      # Importando nossa biblioteca customizada
+      lib = import ./lib { inherit (nixpkgs) lib; };
+      
+      # Configurando overlays
+      overlays = import ./overlays { inherit inputs; };
+      
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ overlays ];
+        config.allowUnfree = true;
+      };
     in {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs pkgs lib; };
         modules = [
           ./modules/system/configuration.nix
+        ];
+      };
+
+      homeConfigurations."guuh@nixos" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        extraSpecialArgs = { inherit inputs lib; };
+        modules = [
+          ./modules/home/home.nix
         ];
       };
     };

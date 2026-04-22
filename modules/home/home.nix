@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   imports = [
+    ./services/dunst 
+    ./programs/fish
     ./desktop/gnome-settings.nix
     ./shell/kitty.nix
     ./dev-tools/vscode.nix
